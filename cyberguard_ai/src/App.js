@@ -75,53 +75,168 @@ function NavLink({ to, children }) {
   );
 }
 
+import { 
+  SignedIn, 
+  SignedOut, 
+  SignInButton, 
+  SignUpButton,
+  useUser 
+} from '@clerk/clerk-react';
+
 // PUBLIC_INTERFACE
 function Hero() {
-  /** Hero section for landing page; no hardcoded logic, styled for neon effect */
+  /** Production-ready hero landing for CyberGuard AI: hacker/modern neon theme, integrated Clerk, animated-glow, intro content */
+  const { isSignedIn } = useUser();
+
   return (
     <div className="hero" style={{
       paddingTop: '120px',
-      paddingBottom: '64px',
+      paddingBottom: '60px',
       textAlign: 'center',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      gap: '24px'
+      gap: 32,
+      position: 'relative',
     }}>
-      <div className="subtitle" style={{
-        color: '#00ffff',
-        fontWeight: 'bold',
-        textShadow: '0 0 8px #00ffff, 0 0 2px #003399'
+      {/* Glowing animated background effect */}
+      <div style={{
+        position: 'absolute',
+        top: -80,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: 720,
+        height: 340,
+        zIndex: 0,
+        pointerEvents: 'none',
+        opacity: 0.18,
+        filter: 'blur(32px)'
       }}>
-        Next-gen AI Cybersecurity
+        <svg width="100%" height="100%">
+          <defs>
+            <radialGradient id="glow1" cx="62%" cy="50%" r="80%">
+              <stop offset="0%" stopColor="#00ffcc" stopOpacity="1" />
+              <stop offset="35%" stopColor="#00ffcc" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#000022" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <ellipse cx="59%" cy="50%" rx="330" ry="130" fill="url(#glow1)" />
+        </svg>
       </div>
-      <h1 className="title" style={{
-        fontSize: '3.3rem',
-        color: '#fff',
-        fontWeight: 700,
-        textShadow: '0 0 18px #00ffb3, 0 0 2px #00ffb3'
-      }}>
-        Welcome to <span style={{ color: '#00ff00', textShadow: '0 0 20px #00ff00' }}>CyberGuard AI</span>
-      </h1>
-      <div className="description" style={{
-        fontSize: '1.2rem',
-        color: '#e0f3ff',
-        maxWidth: 580,
-        margin: '0 auto',
-        textShadow: '0 0 6px #00ffffcc'
-      }}>
-        The all-in-one platform to assess, train, and protect your digital presence using cutting-edge AI. Explore risk scoring, phishing detection, AI cybersecurity chat, and more—all in real time.
+
+      <div className="subtitle"
+        style={{
+          color: '#00ffff',
+          fontWeight: 'bold',
+          letterSpacing: '1.3px',
+          textShadow: '0 0 16px #00ffff, 0 0 22px #00ffcc88, 0 0 2px #003399'
+        }}
+      >
+        Next-gen AI Cybersecurity for Everyone
       </div>
-      <div>
-        <Link to="/assessment" className="btn btn-large" style={{
-          background: 'linear-gradient(90deg, #00ff00 30%, #00ffff 70%)',
-          color: '#19191e',
-          boxShadow: '0 0 16px #00ffcc, 0 0 2px #00ffcc',
-          borderRadius: '6px',
-          fontSize: '1.09rem'
+      <h1 className="title"
+        style={{
+          fontSize: '3.6rem',
+          color: '#fff',
+          fontWeight: 800,
+          lineHeight: 1.07,
+          marginBottom: 0,
+          textShadow: `0 0 26px #00ffb3, 0 0 13px #00ffb355, 0 0 2px #00ffb3`,
         }}>
-          Get Started
-        </Link>
+        <span style={{ color: '#00ffff', textShadow: '0 0 30px #00ffff' }}>CyberGuard</span>
+        <span style={{ color: '#00ff00', textShadow: '0 0 26px #00ff00', marginLeft: 4 }}>AI</span>
+      </h1>
+      <div className="description"
+        style={{
+          fontSize: '1.19rem',
+          color: '#c5ffe8',
+          maxWidth: 640,
+          margin: '0 auto',
+          lineHeight: 1.55,
+          textShadow: '0 0 5px #00ffff77',
+          fontWeight: 500
+        }}>
+        Stay one step ahead of cyber threats. CyberGuard AI leverages advanced AI & real-world learning to <b
+          style={{ color: '#00ff00' }}>assess risk</b>, simulate phishing <b
+          style={{ color: '#ff00ff' }}>attacks</b>, and <b style={{ color: '#00ffff' }}>train your cyber instincts</b>.
+        Realtime scoring, automated analysis, and a <b>24/7 Cybersecurity Assistant Chatbot</b>—all in a beautiful, modern dashboard.
+      </div>
+      {/* CTA bar: Show sign in/up if signed out, else "Go to Dashboard" */}
+      <div style={{ zIndex: 1 }}>
+        <SignedOut>
+          <div style={{
+            display: 'flex',
+            gap: '18px',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <SignInButton mode="modal">
+              <button className="btn btn-large"
+                style={{
+                  background: 'linear-gradient(90deg,#00ffff 20%,#00ff00 90%)',
+                  color: '#021b05',
+                  fontWeight: 700,
+                  fontSize: '1.18rem',
+                  boxShadow: '0 0 16px #00ffcc'
+                }}>
+                Sign In
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="btn btn-large btn-outline"
+                style={{
+                  color: '#00ff00',
+                  borderColor: '#00ff00',
+                  background: '#012920cc',
+                  fontWeight: 600,
+                  fontSize: '1.08rem',
+                }}>
+                Create Account
+              </button>
+            </SignUpButton>
+          </div>
+          <div style={{ color: '#b6fff9', marginTop: 18, fontSize: '0.95rem', textShadow: '0 0 6px #00ffe6aa' }}>
+            No credit card required. Free for individuals.
+          </div>
+        </SignedOut>
+        <SignedIn>
+          <Link to="/dashboard" className="btn btn-large"
+            style={{
+              background: 'linear-gradient(90deg,#00ff00 0%,#00ffff 90%)',
+              color: '#021b05',
+              fontWeight: 700,
+              fontSize: '1.18rem',
+              boxShadow: '0 0 16px #00ffcc, 0 0 6px #282',
+              borderRadius: '6px'
+            }}>
+            Go to Dashboard &rarr;
+          </Link>
+        </SignedIn>
+      </div>
+      {/* Animated accent quote */}
+      <div style={{
+        marginTop: 40,
+        fontSize: '1.03rem',
+        color: '#00ffea',
+        background: 'rgba(0,28,34,0.63)',
+        border: '1.2px solid #044',
+        borderRadius: '8px',
+        padding: '12px 28px',
+        display: 'inline-block',
+        boxShadow: '0 2px 18px #00ffe033,0 0 7px #222',
+        letterSpacing: 0.4,
+        animation: 'fadeup 2.3s cubic-bezier(0.38,0.81,0.59,1.06) 1'
+      }}>
+        <span style={{
+          fontWeight: 700,
+          textShadow: '0 0 10px #fff, 0 0 8px #00ffff'
+        }}>
+          &ldquo;Because your first line of security is you.<span className="blinking-pipe" style={{
+            fontSize: '1.05em',
+            color: '#00ff00',
+            textShadow: '0 0 7px #2f0, 0 0 2px #1a3'
+          }}>|</span>&rdquo;
+        </span>
       </div>
     </div>
   );
