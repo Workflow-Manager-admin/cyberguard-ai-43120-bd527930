@@ -366,6 +366,9 @@ function PlaceholderPage({ title, accent }) {
 // PUBLIC_INTERFACE
 function App() {
   /** Root React component for CyberGuard AI: sets up Router, theme, Navbar, and page routes (feature stubs, not hardcoded logic) */
+  // Diagnostic: App() entered
+  // eslint-disable-next-line no-console
+  console.log('[App.js] App() function is running (before return)');
   return (
     <Router>
       <div className="app" style={{ background: "#000022", minHeight: "100vh" }}>
