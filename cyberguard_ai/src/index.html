@@ -17,6 +17,11 @@
     -->
   </head>
   <body style="margin:0; background: #000022; color: #fff; font-family: 'Inter', 'Roboto', Arial, sans-serif;">
+    <!-- Failsafe JS alert to ensure HTML/JS loads at all. If you do NOT see this, page is not loading any JS. Remove after debug. -->
+    <script>
+      window.__CG_HTML_CHECK__ = true;
+      alert("CyberGuardAI HTML loaded: You should see this alert before React. If not, JS did NOT execute at all.");
+    </script>
     <div id="root"></div>
     <!-- Scripts will be injected by Webpack/React -->
     <!-- Double check: No overlays, iframes, shadow roots, or EditorRootWrapper are present here.
