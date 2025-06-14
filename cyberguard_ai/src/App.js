@@ -35,6 +35,7 @@ function Navbar() {
           <NavLink to="/phishing">Phishing</NavLink>
           <NavLink to="/chatbot">Chatbot</NavLink>
           <NavLink to="/admin">Admin</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
           <div style={{ marginLeft: 18 }}>
             {/* Show auth controls based on Clerk state */}
             <SignedOut>
@@ -422,6 +423,18 @@ function App() {
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Chatbot...</div>}>
                     {React.createElement(
                       React.lazy(() => import("./ChatbotPage"))
+                    )}
+                  </React.Suspense>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Profile...</div>}>
+                    {React.createElement(
+                      React.lazy(() => import("./UserProfilePage"))
                     )}
                   </React.Suspense>
                 </ProtectedRoute>
