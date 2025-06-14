@@ -6,6 +6,15 @@ import RiskAssessmentPage from './RiskAssessmentPage';
 const ReportsAnalyticsPage = React.lazy(() => import('./ReportsAnalyticsPage'));
 const PhishingTestPage = React.lazy(() => import('./PhishingTestPage'));
 
+// Clerk components/hooks – import once at the top:
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+  SignUpButton,
+  useUser
+} from '@clerk/clerk-react';
 
 // PUBLIC_INTERFACE
 function Navbar() {
