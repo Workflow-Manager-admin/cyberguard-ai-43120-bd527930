@@ -127,3 +127,25 @@ body {
 .blinking-pipe {
   animation: blinkPipe 1.1s steps(1) infinite;
 }
+
+/* Neon glow pulse for feature highlights */
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 14px #00ffff66, 0 0 2px #00ff00, 0 0 2px #00ffffaa;
+    filter: brightness(0.96);
+  }
+  50% {
+    box-shadow: 0 0 36px #00ffffdd, 0 0 10px #00ff00, 0 0 16px #ff00ff66;
+    filter: brightness(1.05);
+  }
+  100% {
+    box-shadow: 0 0 14px #ff00ffcc, 0 0 24px #00ffff, 0 0 9px #ff00ff;
+    filter: brightness(1.07);
+  }
+}
+
+/* Subtle fade up for animated sections */
+@keyframes fadeup {
+  from { transform: translateY(32px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}

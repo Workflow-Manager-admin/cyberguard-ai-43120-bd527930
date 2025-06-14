@@ -238,6 +238,88 @@ function Hero() {
           }}>|</span>&rdquo;
         </span>
       </div>
+
+      {/* Animated feature highlights */}
+      <div style={{
+        marginTop: 50,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 30,
+        flexWrap: 'wrap',
+        zIndex: 2,
+        animation: 'fadeup 2.7s 0.5s cubic-bezier(0.38,0.81,0.59,1.06) 1'
+      }}>
+        <FeatureHighlight
+          icon="🛡️"
+          accent="#00ff00"
+          title="AI Risk Assessment"
+          description="Personalized, automated digital risk checkups using advanced AI."
+        />
+        <FeatureHighlight
+          icon="🧠"
+          accent="#00ffff"
+          title="Phishing Sim & Training"
+          description="Train your instincts with real-world phishing simulation and instant feedback."
+        />
+        <FeatureHighlight
+          icon="💬"
+          accent="#ff00ff"
+          title="24/7 Cybersecurity Chatbot"
+          description="Got a question? Get peace of mind—ask our AI about security, privacy, scams & more."
+        />
+      </div>
+    </div>
+  );
+}
+
+// PUBLIC_INTERFACE
+function FeatureHighlight({ icon, title, description, accent }) {
+  /** Hacker neon theme feature card, with animated glow and short feature description */
+  return (
+    <div
+      style={{
+        background: 'rgba(2,40,50,0.93)',
+        border: `1.5px solid ${accent ?? "#00ffff"}`,
+        borderRadius: '15px',
+        minWidth: 230,
+        maxWidth: 260,
+        minHeight: 162,
+        padding: '22px 24px 20px 24px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        boxShadow: `0 0 24px ${accent ?? "#00ffff"}44,0 0 13px #051`, 
+        margin: '0 6px',
+        position: 'relative',
+        animation: 'glow-pulse 2.8s infinite alternate',
+      }}
+    >
+      <div style={{
+        fontSize: '2.4rem',
+        marginBottom: '7px',
+        textShadow: `0 0 15px ${accent ?? "#00ffff"}, 0 0 4px #111`
+      }}>
+        {icon}
+      </div>
+      <div style={{
+        color: accent ?? '#00ffff',
+        fontWeight: 700,
+        fontSize: '1.19rem',
+        textShadow: `0 0 9px ${accent ?? "#00ffff"}`,
+        marginBottom: 6,
+      }}>
+        {title}
+      </div>
+      <div style={{
+        color: '#b1fff7',
+        fontSize: '0.98rem',
+        fontWeight: 500,
+        lineHeight: 1.48,
+        textAlign: 'center',
+        textShadow: '0 0 6px #013'
+      }}>
+        {description}
+      </div>
     </div>
   );
 }
