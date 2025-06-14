@@ -6,14 +6,6 @@ import RiskAssessmentPage from './RiskAssessmentPage';
 const ReportsAnalyticsPage = React.lazy(() => import('./ReportsAnalyticsPage'));
 const PhishingTestPage = React.lazy(() => import('./PhishingTestPage'));
 
-import { 
-  SignedIn, 
-  SignedOut, 
-  UserButton, 
-  SignInButton, 
-  SignUpButton, 
-  useUser 
-} from '@clerk/clerk-react';
 
 // PUBLIC_INTERFACE
 function Navbar() {
@@ -79,13 +71,7 @@ function NavLink({ to, children }) {
   );
 }
 
-import { 
-  SignedIn, 
-  SignedOut, 
-  SignInButton, 
-  SignUpButton,
-  useUser 
-} from '@clerk/clerk-react';
+
 
 // PUBLIC_INTERFACE
 function Hero() {
