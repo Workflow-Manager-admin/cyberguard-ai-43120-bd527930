@@ -4,8 +4,8 @@ import { useUser } from '@clerk/clerk-react';
 
 /**
  * ProtectedRoute - Restricts access to authenticated users using Clerk.
- * Shows fallback UI or redirects to home if not authenticated.
- * 
+ * Shows fallback UI or redirects to landing if not authenticated.
+ *
  * Usage:
  * <ProtectedRoute><DashboardComponent /></ProtectedRoute>
  */
@@ -15,19 +15,29 @@ function ProtectedRoute({ children, fallback = null }) {
   const location = useLocation();
 
   if (!isLoaded) {
-    // Auth state still loading - optionally return a loading spinner
+    // Auth state still loading
     return (
-      <div style={{color:'#00ffff', minHeight: '40vh', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:600, fontSize:'1.3rem'}}>
+      <div style={{
+        color: '#00ffff',
+        minHeight: '40vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: 600,
+        fontSize: '1.3rem'
+      }}>
         Loading authentication...
       </div>
     );
   }
+
   if (!isSignedIn) {
-    // Not signed in - redirect to landing (or show fallback)
+    // Redirect to landing page if not signed in 
     if (fallback) return fallback;
-    // Save attempted location for potential future redirect after login
+    // Optionally save location, for redirect after login
     return <Navigate to="/" replace state={{ from: location }} />;
   }
+  // Authenticated: render protected children
   return children;
 }
 
