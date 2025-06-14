@@ -407,7 +407,18 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/chatbot" element={<PlaceholderPage title="Cybersecurity Chatbot" accent="#00ffff" />} />
+            <Route
+              path="/chatbot"
+              element={
+                <ProtectedRoute>
+                  <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Chatbot...</div>}>
+                    {React.createElement(
+                      React.lazy(() => import("./ChatbotPage"))
+                    )}
+                  </React.Suspense>
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
