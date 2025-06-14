@@ -440,7 +440,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route
+              path="*"
+              element={
+                <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading...</div>}>
+                  {React.createElement(
+                    React.lazy(() => import("./NotFound"))
+                  )}
+                </React.Suspense>
+              }
+            />
           </Routes>
         </main>
       </div>
