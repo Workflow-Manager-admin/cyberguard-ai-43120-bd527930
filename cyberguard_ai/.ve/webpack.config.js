@@ -1,11 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = (env = {}) => ({
-  entry: './src/index.js',
+// PUBLIC_INTERFACE
+module.exports = {
+  entry: path.resolve(__dirname, "../src/index.js"),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "../dist"),
+    filename: "bundle.js",
+    publicPath: "/",
     clean: true,
   },
   module: {
@@ -13,44 +15,34 @@ module.exports = (env = {}) => ({
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-	    presets: [
-                '@babel/preset-env',
-                ['@babel/preset-react', { runtime: 'automatic' }]
-            ],
-            plugins: env.EDIT_MODE ? [path.resolve('./.ve/babel-plugin-jsx-editor-id.js')] : [],
-          },
-        },
+        use: "babel-loader",
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/i,
-        type: 'asset/resource',
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  devServer: {
-    static: './public',
-    hot: true,
-    port: 3000,
-    host: '0.0.0.0',
-    allowedHosts: 'all',
-  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      templateParameters: {
-        PUBLIC_URL: '',
-      },
+      template: path.resolve(__dirname, "../public/index.html"),
+      favicon: path.resolve(__dirname, "../public/favicon.ico"),
+      inject: "body",
     }),
   ],
-  mode: env.production ? 'production' : 'development',
-});
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "../public"),
+    },
+    port: process.env.PORT || 3001, // Default to 3001 for dev
+    hot: true,
+    historyApiFallback: true,
+    open: true,
+    host: "0.0.0.0"
+  },
+  devtool: "eval-source-map",
+  mode: "development",
+};

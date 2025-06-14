@@ -32,7 +32,21 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
+
+> **Custom Port Notice:**  
+> This template uses a custom Webpack config. If you encounter the error `EADDRINUSE: address already in use 0.0.0.0:3000` or see the dev server trying to bind to port 3000, check `.ve/webpack.config.js` (or related webpack config).  
+> The provided config now defaults the dev server to port **3001**. If you want to override, use environment variable:  
+>     
+>  ```sh
+>  PORT=3005 npm start
+>  ```
+>     
+> By default, just run:
+> ```sh
+> npm start
+> ```
+> and your dev server will be at [http://localhost:3001](http://localhost:3001).
 
 ### `npm test`
 
