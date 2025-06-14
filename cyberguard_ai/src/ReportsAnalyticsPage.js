@@ -8,6 +8,10 @@ import { useUser } from "@clerk/clerk-react";
  * No hardcoded demo data is shown as output.
  */
 
+/* Diagnostic: ReportsAnalyticsPage.js loaded */
+// eslint-disable-next-line no-console
+console.log('[ReportsAnalyticsPage] loaded');
+
 // PUBLIC_INTERFACE
 function ReportsAnalyticsPage() {
   // Get user state for contextual personalization (modular, ready for API integration)

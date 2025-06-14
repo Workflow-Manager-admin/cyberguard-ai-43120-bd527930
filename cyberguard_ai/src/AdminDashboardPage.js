@@ -7,6 +7,10 @@ import { useUser } from "@clerk/clerk-react";
  * No demo or hardcoded business logic; all widgets ready for live content.
  */
 
+/* Diagnostic: AdminDashboardPage.js loaded */
+// eslint-disable-next-line no-console
+console.log('[AdminDashboardPage] loaded');
+
 // PUBLIC_INTERFACE
 export default function AdminDashboardPage() {
   const { user } = useUser();

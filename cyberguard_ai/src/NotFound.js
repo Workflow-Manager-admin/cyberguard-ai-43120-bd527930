@@ -5,6 +5,10 @@ import React from "react";
  * Displays when users navigate to an undefined route.
  */
 
+/* Diagnostic: NotFound.js loaded */
+// eslint-disable-next-line no-console
+console.log('[NotFound] component loaded');
+
 // PUBLIC_INTERFACE
 export default function NotFound() {
   return (

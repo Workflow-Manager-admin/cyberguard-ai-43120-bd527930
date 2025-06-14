@@ -93,6 +93,10 @@ function Hero() {
   /** Production-ready hero landing for CyberGuard AI: hacker/modern neon theme, integrated Clerk, animated-glow, intro content */
   const { isSignedIn } = useUser();
 
+  // Diagnostic log for mount
+  // eslint-disable-next-line no-console
+  console.log('[Hero] component rendered. isSignedIn:', isSignedIn);
+
   return (
     <div className="hero" style={{
       paddingTop: '120px',
@@ -380,7 +384,9 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Dashboard...</div>}>
-                    <UserDashboardPage />
+                    {UserDashboardPage
+                      ? <UserDashboardPage />
+                      : <div style={{ color: "#ff0053" }}>Dashboard component missing/export error.</div>}
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -389,7 +395,9 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading Admin Dashboard...</div>}>
-                    <AdminDashboardPage />
+                    {AdminDashboardPage
+                      ? <AdminDashboardPage />
+                      : <div style={{ color: "#ff0053" }}>AdminDashboardPage component missing/export error.</div>}
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -399,7 +407,9 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Reports...</div>}>
-                    <ReportsAnalyticsPage />
+                    {ReportsAnalyticsPage
+                      ? <ReportsAnalyticsPage />
+                      : <div style={{ color: "#ff0053" }}>ReportsAnalyticsPage component missing/export error.</div>}
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -408,7 +418,9 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading Phishing Simulation...</div>}>
-                    <PhishingTestPage />
+                    {PhishingTestPage
+                      ? <PhishingTestPage />
+                      : <div style={{ color: "#ff0053" }}>PhishingTestPage component missing/export error.</div>}
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -418,7 +430,9 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Chatbot...</div>}>
-                    <ChatbotPage />
+                    {ChatbotPage
+                      ? <ChatbotPage />
+                      : <div style={{ color: "#ff0053" }}>ChatbotPage component missing/export error.</div>}
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -428,7 +442,9 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Profile...</div>}>
-                    <UserProfilePage />
+                    {UserProfilePage
+                      ? <UserProfilePage />
+                      : <div style={{ color: "#ff0053" }}>UserProfilePage component missing/export error.</div>}
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -437,7 +453,9 @@ function App() {
               path="*"
               element={
                 <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading...</div>}>
-                  <NotFound />
+                  {NotFound
+                    ? <NotFound />
+                    : <div style={{ color: "#ff0053" }}>NotFound component missing/export error.</div>}
                 </React.Suspense>
               }
             />

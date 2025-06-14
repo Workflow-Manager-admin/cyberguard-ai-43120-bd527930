@@ -7,6 +7,10 @@ import { useUser } from "@clerk/clerk-react";
  * No demo/hardcoded logic: UI is real and ready for data.
  */
 
+/* Diagnostic: ChatbotPage.js loaded */
+// eslint-disable-next-line no-console
+console.log('[ChatbotPage] loaded');
+
 // PUBLIC_INTERFACE
 function NeonPanel({ children, style }) {
   // Neon-hacker themed panel for chat interface.

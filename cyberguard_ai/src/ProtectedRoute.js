@@ -14,6 +14,10 @@ function ProtectedRoute({ children, fallback = null }) {
   const { isLoaded, isSignedIn } = useUser();
   const location = useLocation();
 
+  // Diagnostic log for mount and prop inspection
+  // eslint-disable-next-line no-console
+  console.log('[ProtectedRoute] Mounted. isLoaded:', isLoaded, 'isSignedIn:', isSignedIn, 'children:', typeof children);
+
   if (!isLoaded) {
     // Auth state still loading
     return (
@@ -32,12 +36,20 @@ function ProtectedRoute({ children, fallback = null }) {
   }
 
   if (!isSignedIn) {
-    // Redirect to landing page if not signed in 
+    // Diagnostic log when redirecting, to track on console
+    // eslint-disable-next-line no-console
+    console.warn('[ProtectedRoute] Not signed in, redirecting to landing.', { location, fallback });
     if (fallback) return fallback;
-    // Optionally save location, for redirect after login
     return <Navigate to="/" replace state={{ from: location }} />;
   }
-  // Authenticated: render protected children
+
+  // Authenticated: guard against accidental missing child component
+  if (!children) {
+    // eslint-disable-next-line no-console
+    console.error('[ProtectedRoute] No children passed or component undefined!');
+    return <div style={{ color: "#ff0053", fontWeight: 600 }}>ProtectedRoute Error: No content to display (component undefined).</div>;
+  }
+
   return children;
 }
 

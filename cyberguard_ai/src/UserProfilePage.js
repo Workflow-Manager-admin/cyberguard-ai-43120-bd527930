@@ -15,6 +15,10 @@ import {
  * - Ready for future profile extensions (preferences, roles)
  */
 
+/* Diagnostic: UserProfilePage.js loaded */
+// eslint-disable-next-line no-console
+console.log('[UserProfilePage] loaded');
+
 // PUBLIC_INTERFACE
 export default function UserProfilePage() {
   const { user, isLoaded } = useUser();

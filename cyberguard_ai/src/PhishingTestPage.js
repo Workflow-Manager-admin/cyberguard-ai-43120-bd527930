@@ -47,6 +47,10 @@ const PHISHING_EMAIL_SCENARIOS = [
   }
 ];
 
+/* Diagnostic: PhishingTestPage.js loaded */
+// eslint-disable-next-line no-console
+console.log('[PhishingTestPage] loaded');
+
 // PUBLIC_INTERFACE
 function NeonPanel({ children, style }) {
   return (

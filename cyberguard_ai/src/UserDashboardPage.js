@@ -9,6 +9,10 @@ import { Link } from "react-router-dom";
  * - No demo logic, designed for live data integration
  */
 
+/* Diagnostic: UserDashboardPage.js loaded */
+ // eslint-disable-next-line no-console
+console.log('[UserDashboardPage] loaded');
+
 // PUBLIC_INTERFACE
 export default function UserDashboardPage() {
   const { user } = useUser();
