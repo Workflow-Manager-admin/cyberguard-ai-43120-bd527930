@@ -4,6 +4,7 @@ import './App.css';
 import ProtectedRoute from './ProtectedRoute';
 import RiskAssessmentPage from './RiskAssessmentPage';
 const ReportsAnalyticsPage = React.lazy(() => import('./ReportsAnalyticsPage'));
+const PhishingTestPage = React.lazy(() => import('./PhishingTestPage'));
 
 import { 
   SignedIn, 
@@ -397,7 +398,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/phishing" element={<PlaceholderPage title="Phishing Simulations" accent="#ff00ff" />} />
+            <Route path="/phishing"
+              element={
+                <ProtectedRoute>
+                  <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading Phishing Simulation...</div>}>
+                    <PhishingTestPage />
+                  </React.Suspense>
+                </ProtectedRoute>
+              }
+            />
             <Route path="/chatbot" element={<PlaceholderPage title="Cybersecurity Chatbot" accent="#00ffff" />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
