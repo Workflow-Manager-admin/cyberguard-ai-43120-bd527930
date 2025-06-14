@@ -53,5 +53,4 @@
       "./.ve/babel-plugin-jsx-editor-id.js"
     ]
   }
-  // If you are seeing overlays or editor wrappers, check for injected .ve/EditorRootWrapper or related overlays in .ve/webpack.config.js or index.js and remove/comment as necessary for blank screen bugs.
 }
