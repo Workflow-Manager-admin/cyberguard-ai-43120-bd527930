@@ -377,7 +377,11 @@ function App() {
             <Route path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Dashboard" accent="#00ff00" />
+                  <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Dashboard...</div>}>
+                    {React.createElement(
+                      React.lazy(() => import("./UserDashboardPage"))
+                    )}
+                  </React.Suspense>
                 </ProtectedRoute>
               }
             />
