@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
 import ProtectedRoute from './ProtectedRoute';
+import RiskAssessmentPage from './RiskAssessmentPage';
 
 import { 
   SignedIn, 
@@ -367,7 +368,7 @@ function App() {
             <Route path="/assessment"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Risk Assessment" accent="#00ff00" />
+                  <RiskAssessmentPage />
                 </ProtectedRoute>
               }
             />
