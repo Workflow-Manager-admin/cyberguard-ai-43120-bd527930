@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import './App.css';
 import ProtectedRoute from './ProtectedRoute';
 import RiskAssessmentPage from './RiskAssessmentPage';
+const ReportsAnalyticsPage = React.lazy(() => import('./ReportsAnalyticsPage'));
 
 import { 
   SignedIn, 
@@ -386,7 +387,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/reports" element={<PlaceholderPage title="Reports & Analytics" accent="#00ffff" />} />
+            <Route
+              path="/reports"
+              element={
+                <ProtectedRoute>
+                  <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Reports...</div>}>
+                    <ReportsAnalyticsPage />
+                  </React.Suspense>
+                </ProtectedRoute>
+              }
+            />
             <Route path="/phishing" element={<PlaceholderPage title="Phishing Simulations" accent="#ff00ff" />} />
             <Route path="/chatbot" element={<PlaceholderPage title="Cybersecurity Chatbot" accent="#00ffff" />} />
             <Route path="*" element={<Navigate to="/" replace />} />
