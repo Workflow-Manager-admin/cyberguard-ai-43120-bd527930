@@ -2,9 +2,22 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
 
+import { 
+  SignedIn, 
+  SignedOut, 
+  UserButton, 
+  SignInButton, 
+  SignUpButton, 
+  useUser 
+} from '@clerk/clerk-react';
+
 // PUBLIC_INTERFACE
 function Navbar() {
-  /** Main navigation bar for CyberGuard AI */
+  /** Main navigation bar for CyberGuard AI with Clerk authentication flow */
+
+  // Clerk's useUser provides user data if authenticated
+  const { isSignedIn, user } = useUser();
+
   return (
     <nav className="navbar">
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
@@ -18,6 +31,22 @@ function Navbar() {
           <NavLink to="/phishing">Phishing</NavLink>
           <NavLink to="/chatbot">Chatbot</NavLink>
           <NavLink to="/admin">Admin</NavLink>
+          <div style={{ marginLeft: 18 }}>
+            {/* Show auth controls based on Clerk state */}
+            <SignedOut>
+              {/* Show both sign in and sign up buttons */}
+              <SignInButton mode="modal">
+                <button className="btn" style={{ marginRight: 8 }}>Sign in</button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="btn btn-outline">Sign up</button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              {/* Show user avatar/profile and dropdown actions */}
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
+          </div>
         </div>
       </div>
     </nav>

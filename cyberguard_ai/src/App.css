@@ -98,6 +98,18 @@ body {
   transition: background-color 0.2s ease;
 }
 
+.btn-outline {
+  background: transparent;
+  color: var(--base-light);
+  border: 1.5px solid var(--base-light);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: #002e33;
+  color: #fff;
+}
+
 .btn:hover {
   background-color: #7691ff;
 }
