@@ -1,0 +1,1 @@
+{"is_source_file": true, "file_id": 47, "git_revision": "", "state": 1, "description": "", "external_files": [], "external_methods": [], "published": [], "classes": [], "methods": [], "calls": [], "search-terms": [], "hash": "17d0593431751bf6f63ef9108a20f08b", "format-version": 4, "code-base-name": "default", "filename": "auth_verification_plan.md", "knowledge_revision": 101}
