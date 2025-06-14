@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
+import ProtectedRoute from './ProtectedRoute';
 
 import { 
   SignedIn, 
@@ -166,11 +167,30 @@ function App() {
         <main style={{ paddingTop: 80 }}>
           <Routes>
             <Route path="/" element={<Hero />} />
-            <Route path="/assessment" element={<PlaceholderPage title="Risk Assessment" accent="#00ff00" />} />
+            <Route path="/assessment"
+              element={
+                <ProtectedRoute>
+                  <PlaceholderPage title="Risk Assessment" accent="#00ff00" />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <PlaceholderPage title="Dashboard" accent="#00ff00" />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/admin"
+              element={
+                <ProtectedRoute>
+                  <PlaceholderPage title="Admin Dashboard" accent="#ff00ff" />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/reports" element={<PlaceholderPage title="Reports & Analytics" accent="#00ffff" />} />
             <Route path="/phishing" element={<PlaceholderPage title="Phishing Simulations" accent="#ff00ff" />} />
             <Route path="/chatbot" element={<PlaceholderPage title="Cybersecurity Chatbot" accent="#00ffff" />} />
-            <Route path="/admin" element={<PlaceholderPage title="Admin Dashboard" accent="#ff00ff" />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
