@@ -3,8 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import './App.css';
 import ProtectedRoute from './ProtectedRoute';
 import RiskAssessmentPage from './RiskAssessmentPage';
+// Lazy-load all major page components at the module scope
 const ReportsAnalyticsPage = React.lazy(() => import('./ReportsAnalyticsPage'));
 const PhishingTestPage = React.lazy(() => import('./PhishingTestPage'));
+const UserDashboardPage = React.lazy(() => import('./UserDashboardPage'));
+const AdminDashboardPage = React.lazy(() => import('./AdminDashboardPage'));
+const ChatbotPage = React.lazy(() => import('./ChatbotPage'));
+const UserProfilePage = React.lazy(() => import('./UserProfilePage'));
+const NotFound = React.lazy(() => import('./NotFound'));
 
 // Clerk components/hooks – import once at the top:
 import {
@@ -374,9 +380,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Dashboard...</div>}>
-                    {React.createElement(
-                      React.lazy(() => import("./UserDashboardPage"))
-                    )}
+                    <UserDashboardPage />
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -385,9 +389,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading Admin Dashboard...</div>}>
-                    {React.createElement(
-                      React.lazy(() => import("./AdminDashboardPage"))
-                    )}
+                    <AdminDashboardPage />
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -416,9 +418,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Chatbot...</div>}>
-                    {React.createElement(
-                      React.lazy(() => import("./ChatbotPage"))
-                    )}
+                    <ChatbotPage />
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -428,9 +428,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <React.Suspense fallback={<div style={{ color: "#00ffff" }}>Loading Profile...</div>}>
-                    {React.createElement(
-                      React.lazy(() => import("./UserProfilePage"))
-                    )}
+                    <UserProfilePage />
                   </React.Suspense>
                 </ProtectedRoute>
               }
@@ -439,9 +437,7 @@ function App() {
               path="*"
               element={
                 <React.Suspense fallback={<div style={{ color: "#ff00ff" }}>Loading...</div>}>
-                  {React.createElement(
-                    React.lazy(() => import("./NotFound"))
-                  )}
+                  <NotFound />
                 </React.Suspense>
               }
             />
